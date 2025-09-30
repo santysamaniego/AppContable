@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manejo de Gastos y Negocio</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Manejo de Gastos y Negocio</h1>
+    </header>
+
+    <main>
+        <section id="personal-section" class="section">
+            <h2>Gastos Personales</h2>
+            <form id="personal-form" class="entry-form">
+                <div class="form-row">
+                    <label>
+                        Fecha:
+                        <input type="date" id="personal-date" required />
+                    </label>
+                    <label>
+                        Categoría:
+                        <select id="personal-category" required>
+                            <option value="" disabled selected>Selecciona categoría</option>
+                            <option value="Gasto personal">Gasto personal</option>
+                            <option value="Gasto fijo">Gasto fijo</option>
+                            <option value="Transporte">Transporte</option>
+                            <option value="Inversión">Inversión</option>
+                            <option value="Venta">Venta</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>
+                        Descripción:
+                        <input type="text" id="personal-description" placeholder="Descripción" required />
+                    </label>
+                    <label>
+                        Monto:
+                        <input type="number" id="personal-amount" min="0" step="0.01" required />
+                    </label>
+                </div>
+                <div class="form-row form-row-button">
+                    <button type="submit" id="btn-add-personal">Agregar Gasto Personal</button>
+                </div>
+            </form>
+
+            <div class="entries-container">
+                <h3>Gastos Personales Registrados</h3>
+                <table id="personal-table" class="entries-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                            <th>Monto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="total-container total-personal">
+                <strong>Total Gastos Personales: $<span id="personal-total">0.00</span></strong>
+            </div>
+        </section>
+
+        <section id="business-section" class="section">
+            <h2>Negocio</h2>
+
+            <div class="business-forms-wrapper">
+                <form id="business-inventory-form" class="entry-form business-form">
+                    <h3>Agregar Producto / Inversión</h3>
+                    <div class="form-row">
+                        <label>
+                            Fecha:
+                            <input type="date" id="business-inv-date" required />
+                        </label>
+                        <label>
+                            Categoría:
+                            <select id="business-inv-category" required>
+                                <option value="" disabled selected>Selecciona categoría</option>
+                                <option value="Inversión">Inversión</option>
+                                <option value="Gasto fijo">Gasto fijo</option>
+                                <option value="Transporte">Transporte</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            Nombre Producto:
+                            <input type="text" id="business-inv-name" placeholder="Ej: Remera" required />
+                        </label>
+                        <label>
+                            Cantidad:
+                            <input type="number" id="business-inv-quantity" min="1" step="1" required />
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            Precio Unitario:
+                            <input type="number" id="business-inv-price" min="0" step="0.01" required />
+                        </label>
+                        <label>
+                            Proveedor (Nombre):
+                            <input type="text" id="business-inv-contact-name" placeholder="Nombre proveedor" />
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            Proveedor (Contacto):
+                            <input type="text" id="business-inv-contact-info" placeholder="Teléfono, email, etc." />
+                        </label>
+                    </div>
+                    <div class="form-row form-row-button">
+                        <button type="submit">Agregar Producto / Inversión</button>
+                    </div>
+                </form>
+
+                <form id="business-sales-form" class="entry-form business-form">
+                    <h3>Registrar Venta</h3>
+                    <div class="form-row">
+                        <label>
+                            Fecha:
+                            <input type="date" id="business-sale-date" required />
+                        </label>
+                        <label>
+                            Producto:
+                            <select id="business-sale-product" required>
+                                <option value="" disabled selected>Selecciona producto</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            Cantidad Vendida:
+                            <input type="number" id="business-sale-quantity" min="1" step="1" required />
+                        </label>
+                        <label>
+                            Precio Venta Unitario:
+                            <input type="number" id="business-sale-price" min="0" step="0.01" required />
+                        </label>
+                    </div>
+                    <div class="form-row form-row-button">
+                        <button type="submit">Registrar Venta</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="entries-container">
+                <h3>Inventario / Inversiones</h3>
+                <table id="business-inventory-table" class="entries-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Categoría</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Proveedor</th>
+                            <th>Contacto</th>
+                            <th>Total Inversión</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="entries-container">
+                <h3>Ventas Registradas</h3>
+                <table id="business-sales-table" class="entries-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Producto</th>
+                            <th>Cantidad Vendida</th>
+                            <th>Precio Venta Unitario</th>
+                            <th>Total Venta</th>
+                            <th>Ganancia</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="business-totals">
+                <div class="total-card">
+                    <h4>Total Inversión</h4>
+                    <p>$<span id="business-total-investment">0.00</span></p>
+                </div>
+                <div class="total-card">
+                    <h4>Total Ventas</h4>
+                    <p>$<span id="business-total-sales">0.00</span></p>
+                </div>
+                <div class="total-card">
+                    <h4>Ganancia Total</h4>
+                    <p>$<span id="business-total-profit">0.00</span></p>
+                </div>
+                <div class="total-card">
+                    <h4>Total Gastos Negocio</h4>
+                    <p>$<span id="business-total-expenses">0.00</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="summary-section" class="section">
+            <h2>Resumen General</h2>
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <h3>Gastos Personales</h3>
+                    <p>$<span id="summary-personal-expenses">0.00</span></p>
+                </div>
+                <div class="summary-card">
+                    <h3>Gastos Negocio</h3>
+                    <p>$<span id="summary-business-expenses">0.00</span></p>
+                </div>
+                <div class="summary-card">
+                    <h3>Inversión Negocio</h3>
+                    <p>$<span id="summary-business-investment">0.00</span></p>
+                </div>
+                <div class="summary-card">
+                    <h3>Ventas</h3>
+                    <p>$<span id="summary-business-sales">0.00</span></p>
+                </div>
+                <div class="summary-card">
+                    <h3>Ganancia Total</h3>
+                    <p>$<span id="summary-business-profit">0.00</span></p>
+                </div>
+                <div class="summary-card">
+                    <h3>Balance General</h3>
+                    <p>$<span id="summary-balance">0.00</span></p>
+                </div>
+            </div>
+            <div class="monthly-archives">
+                <h3>Archivos Mensuales Guardados</h3>
+                <ul id="monthly-archives-list"></ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Manejo de Gastos y Negocio</p>
+    </footer>
+
+    <!-- Modal alerta 30 días -->
+    <div id="modal-30days" class="modal hidden">
+        <div class="modal-content">
+            <h2>¡Se cumplió un mes!</h2>
+            <p>Han pasado 30 días desde el primer gasto registrado. Se almacenará el resumen mensual.</p>
+            <button id="close-modal-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("sw.js")
+            .then(() => console.log("✅ Service Worker registrado"))
+            .catch(err => console.error("❌ Error SW:", err));
+        }
+    </script>
+</body>
+</html>
